@@ -3,6 +3,8 @@ import { RequestExtended } from "../interfaces/request-extended.interface";
 import { insertDbItem, getDbItems, getDbItem, updateDbItem, deleteDbItem } from "../services/item.service";
 import { handleHttp } from "../utils/error.handle"
 
+// TODO: validate DTOs 😎
+
 const getItems = async (req:Request,res:Response) => {
     try {
         res.send(await getDbItems());
