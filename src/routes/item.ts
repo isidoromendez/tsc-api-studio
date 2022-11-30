@@ -8,7 +8,7 @@ const router = Router();
 router.get('/', logMiddleWare,getItems);
 router.get('/:id', logMiddleWare, getItem);
 router.post('/',checkJwtSession, logMiddleWare,postItem);
-router.put('/:id', logMiddleWare, updateItem);
-router.delete('/:id', logMiddleWare, deleteItem);
+router.put('/:id', checkJwtSession, logMiddleWare, updateItem);
+router.delete('/:id', checkJwtSession, logMiddleWare, deleteItem);
 
 export { router };
