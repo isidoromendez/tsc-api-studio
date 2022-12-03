@@ -15,7 +15,7 @@ readdirSync(PATH_ROUTER)
     .forEach((fileName)=>{
         import(`./${fileName}`).then((routerModule)=>{
             router.use(`/${fileName}`,routerModule.router);
-            console.log(`importing route: /${fileName}`);
+            // TODO: inform: console.log(`importing route: /${fileName}`);
         });
         
         
