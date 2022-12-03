@@ -1,5 +1,5 @@
 export interface Ship {
-    id: string;
+    id?: string;
     name: string;
     gas: string
 }

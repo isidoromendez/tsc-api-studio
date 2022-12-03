@@ -25,7 +25,8 @@ const getItem = async ({params}:Request,res:Response) => {
 const updateItem = async ({params, body}:Request,res:Response) => {
     try {
         const {id} = params;
-        res.send(await updateDbItem(id, body));
+        const response = await updateDbItem(id, body);
+        res.send({data:response});
     } catch (error) {
         handleHttp(res,`ERROR_UPDATE_ITEM ${error}`);
     }

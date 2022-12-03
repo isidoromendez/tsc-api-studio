@@ -3,6 +3,10 @@ import { Ship } from "../interfaces/ship.interface";
 
 const ItemSchema = new Schema<Ship>(
     {
+        id: {
+            type: String,
+            required: true
+        },
         name: {
             type: String,
             required: true
