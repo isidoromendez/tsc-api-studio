@@ -17,7 +17,7 @@ describe('Aceptance Routes /auth',() => {
        server.close((err:any)=>{})
     });
 
-    test('register 200', async() => {
+    test.skip('register 200', async() => {
         // prepare
         const exp = {
             statusCode: 200,
