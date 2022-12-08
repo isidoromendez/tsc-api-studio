@@ -1,5 +1,5 @@
 ###
-POST http://localhost:3002/item HTTP/1.1
+POST http://localhost:3002/ship HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvc2EubWVsdHJvc28xQGV4YW1wbGUuY29tIiwiaWF0IjoxNjY5ODE1NjU2LCJleHAiOjE2Njk4MjI4NTZ9.uzdR1BJDwz6v2NEHWReyfZNEGZT2uVNfBrOXkuJrYow
 
@@ -9,19 +9,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvc2Eub
 }
 
 ###
-GET http://localhost:3002/item HTTP/1.1
-
-###
-GET http://localhost:3002/item/638685b97e1b82835c94363e HTTP/1.1
-
-###
-PUT http://localhost:3002/item/638685b97e1b82835c94363e HTTP/1.1
-content-type: application/json
-
-{
-    "name": "xazzzzzz",
-    "gas": "protocultur"
-}
-
-###
-DELETE http://localhost:3002/item/6386839ae4af7876b4773d8a HTTP/1.1
+GET http://localhost:3002/ship HTTP/1.1
