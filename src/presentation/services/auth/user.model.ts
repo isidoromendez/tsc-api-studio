@@ -1,37 +1,41 @@
-import { Schema , model } from "mongoose";
+import { Model, Schema } from "mongoose";
+import { Config } from "presentation/interfaces/config";
 import { User } from "../../interfaces/user";
-import MongoConnection from "./db-connect";
+import apiConn from "./db-connect";
 
 
-const connection = MongoConnection.getInstance().getConnection()
 
-const UserSchema = new Schema<User>(
-    {
-        name: {
-            type: String,
-            required: true
-        },
-        password: {
-            type: String,
-            required: true
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true
-        },
-        description: {
-            type: String,
-            default: 'no description'
-        },
+
+const getUserModel = (config:Config):Model<User> => {
+    const connection = apiConn(config)   
         
-    },
-    {
-        timestamps:true,
-        versionKey:false
-    }
-);
+    const UserSchema = new Schema<User>(
+        {
+            name: {
+                type: String,
+                required: true
+            },
+            password: {
+                type: String,
+                required: true
+            },
+            email: {
+                type: String,
+                required: true,
+                unique: true
+            },
+            description: {
+                type: String,
+                default: 'no description'
+            },
+            
+        },
+        {
+            timestamps:true,
+            versionKey:false
+        }
+    );
 
-const UserModel = connection.model('users',UserSchema);
-
-export default UserModel;
+    return connection.model('users',UserSchema);
+}
+export { getUserModel };

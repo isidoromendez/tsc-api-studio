@@ -7,8 +7,9 @@ import { MongoClient } from 'mongodb'
 import { DatabaseWrapper } from "./data/interfaces/data-sources/database-wrapper";
 import { MongoDBContactShipDataSource } from './data/data-sources/mongodb/mongodb-ship-data-source'
 import config from "./config";
+import { Config } from 'presentation/interfaces/config'
 
-const initShipRouter = async () => {
+const initShipRouter = async (config:Config) => {
     const client: MongoClient = new MongoClient(config.DOMAIN_MONGO_URL)
     await client.connect()
     const db = client.db(config.DOMAIN_MONGO_DB);
@@ -25,7 +26,7 @@ const initShipRouter = async () => {
 }
 
 (async () => {
-    const shipRouter = await initShipRouter()
+    const shipRouter = await initShipRouter(config)
     server.use("/ship", shipRouter)
     server.listen(3002, () => console.log("Running on server"))
 })()

@@ -1,21 +1,23 @@
 import { Auth } from "../../interfaces/auth"
 import { User } from "../../interfaces/user"
-import UserModel from "./user.model"
+import { getUserModel } from "./user.model"
 import { encrypt, verify } from "../../utils/bcrypt.handle"
 import { generateToken } from "../../utils/jwt.handle"
+import config from "../../../config";
+import { Model } from "mongoose"
+const AuthService = {
 
-export default class AuthService{
-    constructor(){}
-
-    registerUser = async (user:User) => {
-        if ( await UserModel.findOne({email:user.email}) )
+    registerUser: async (user:User) => {
+        const userModel:Model<User> = getUserModel(config)
+        if ( await userModel?.findOne({email:user.email}) )
             throw new Error(`Email already exist: ${user.email}`);
         user.password = await encrypt(user.password); 
-        return await UserModel.create( user );
-    }
+        return await userModel?.create( user );
+    },
     
-    loginUser = async ({email, password}:Auth) => {
-        const user = await UserModel.findOne({ email })
+    loginUser: async ({email, password}:Auth) => {
+        const userModel:Model<User> = getUserModel(config)
+        const user = await userModel?.findOne({ email })
         
         if (! user )
             throw new Error(`Invalid credentials`)
@@ -28,3 +30,5 @@ export default class AuthService{
         return { token, user }
     }
 }
+
+export { AuthService }
